@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<!-- saved from url=(0039)http://127.0.0.1:5500/presentation.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Food Trends – AI Customer Intelligence</title>
+
+<link href="./Food Trends – AI Customer Intelligence_files/css2" rel="stylesheet">
+<link rel="stylesheet" href="./Food Trends – AI Customer Intelligence_files/all.min.css">
+
+<style>
+body{
+margin:0;
+font-family:'Poppins',sans-serif;
+overflow:hidden;
+background:#0f172a;
+}
+
+.logo{
+position:fixed;
+top:25px;
+right:50px;
+width:160px;
+z-index:1000;
+}
+
+.slide{
+height:100vh;
+width:100%;
+display:none;
+padding:80px 120px;
+box-sizing:border-box;
+position:absolute;
+top:0;
+left:0;
+overflow:hidden;
+z-index:1;
+}
+
+.active{
+display:block;
+animation: slideIn 0.5s ease;
+z-index:10;
+}
+
+@keyframes slideIn{
+from{opacity:0; transform:translateX(60px);}
+to{opacity:1; transform:translateX(0);}
+}
+
+.gradient{
+background:linear-gradient(135deg,#1e3c72,#2a5298);
+color:white;
+}
+
+.light{
+background: linear-gradient(-45deg,#034778,#032f58,#618daf,#21425d);
+background-size: 400% 400%;
+animation: blueMotion 08s ease infinite;
+color:#1f2937;
+}
+
+@keyframes blueMotion{
+0%{ background-position: 0% 50%; }
+50%{ background-position: 100% 50%; }
+100%{ background-position: 0% 50%; }
+}
+
+h1{
+font-size:40px;
+font-weight:600;
+margin-bottom:25px;
+}
+
+.section-title{
+font-size:18px;
+font-weight:600;
+margin-top:25px;
+margin-bottom:10px;
+display:flex;
+align-items:center;
+gap:10px;
+color:#0072ff;
+}
+
+ul{
+padding-left:20px;
+line-height:1.8;
+font-size:16px;
+}
+
+/* CARD ANIMATION (single definition only) */
+.card{
+background:white;
+padding:35px;
+border-radius:20px;
+box-shadow:0 20px 50px rgba(0,0,0,0.08);
+margin-top:25px;
+opacity:0;
+transform:translateY(30px);
+animation:cardAppear 0.8s ease forwards;
+}
+
+@keyframes cardAppear{
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* MODULE CARDS (Slide 1) */
+.module-card{
+background:white;
+color:#1f2937;
+padding:20px;
+border-radius:14px;
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
+opacity:0;
+transform:translateY(30px);
+animation:cardAppear 0.8s ease forwards;
+}
+
+.module-card:nth-child(1){ animation-delay:0.2s; }
+.module-card:nth-child(2){ animation-delay:0.4s; }
+.module-card:nth-child(3){ animation-delay:0.6s; }
+.module-card:nth-child(4){ animation-delay:0.8s; }
+.module-card:nth-child(5){ animation-delay:1s; }
+.module-card:nth-child(6){ animation-delay:1.2s; }
+
+/* TEAM CARDS */
+.team-card{
+background:white;
+padding:20px;
+border-radius:20px;
+box-shadow:0 20px 50px rgba(0,0,0,0.08);
+text-align:center;
+opacity:0;
+transform:translateY(30px);
+animation:cardAppear 0.8s ease forwards;
+}
+
+.team-card:nth-child(1){ animation-delay:0.2s; }
+.team-card:nth-child(2){ animation-delay:0.4s; }
+.team-card:nth-child(3){ animation-delay:0.6s; }
+.team-card:nth-child(4){ animation-delay:0.8s; }
+.team-card:nth-child(5){ animation-delay:1s; }
+.team-card:nth-child(6){ animation-delay:1.2s; }
+
+.slide.active .card{
+animation:cardReveal 0.6s ease forwards;
+}
+
+.slide.active .card:nth-of-type(1){ animation-delay:0.2s; }
+.slide.active .card:nth-of-type(2){ animation-delay:0.4s; }
+.slide.active .card:nth-of-type(3){ animation-delay:0.6s; }
+.slide.active .card:nth-of-type(4){ animation-delay:0.8s; }
+.slide.active .card:nth-of-type(5){ animation-delay:1s; }
+
+@keyframes cardReveal{
+from{
+opacity:0;
+transform:translateY(35px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+.slide-number{
+position:absolute;
+bottom:20px;
+right:30px;
+font-size:14px;
+color:#888;
+}
+/* ===== PROJECT FLOW – CONSULTING STYLE ===== */
+
+.flow-wrapper{
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+height:75%;
+gap:30px;
+}
+
+.timeline{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+align-items:center;
+gap:18px;
+max-width:1100px;
+}
+
+/* Step Card */
+.timeline-step{
+min-width:180px;
+padding:16px 18px;
+border-radius:14px;
+background:linear-gradient(135deg,#ffffff,#f1f5f9);
+box-shadow:0 12px 30px rgba(0,0,0,0.08);
+text-align:center;
+font-size:13px;
+font-weight:600;
+color:#1f2937;
+
+opacity:0;
+transform:translateY(25px);
+animation:fadeUpStep 0.6s ease forwards;
+}
+
+/* Blue Accent Border */
+.timeline-step{
+border-top:4px solid #0072ff;
+}
+
+/* Icon */
+.timeline-step{
+min-width:240px;          /* wider card */
+padding:26px 30px;        /* more inner spacing */
+font-size:20px;           /* slightly bigger text */
+border-radius:28px;       /* smoother corners */
+}
+
+/* Arrow */
+.flow-arrow{
+font-size:25px;
+color:#f00505;
+opacity:0;
+animation:fadeUpStep 0.6s ease forwards;
+}
+
+/* Reset animation */
+.timeline-step,
+.flow-arrow{
+opacity:0;
+transform:translateY(25px);
+animation:fadeUpStep 0.6s ease forwards;
+}
+
+/* Sequential delays for EVERY child in order */
+.timeline > *:nth-child(1){ animation-delay:0.7s; }
+.timeline > *:nth-child(2){ animation-delay:1.4s; }
+.timeline > *:nth-child(3){ animation-delay:2.1s; }
+.timeline > *:nth-child(4){ animation-delay:2.8s; }
+.timeline > *:nth-child(5){ animation-delay:3.5s; }
+.timeline > *:nth-child(6){ animation-delay:4.2s; }
+.timeline > *:nth-child(7){ animation-delay:4.9s; }
+.timeline > *:nth-child(8){ animation-delay:5.6s; }
+.timeline > *:nth-child(9){ animation-delay:6.3s; }
+.timeline > *:nth-child(10){ animation-delay:7.0s; }
+.timeline > *:nth-child(11){ animation-delay:7.7s; }
+.timeline > *:nth-child(12){ animation-delay:8.4s; }
+.timeline > *:nth-child(13){ animation-delay:9.1s; }
+.timeline > *:nth-child(14){ animation-delay:9.8s; }
+.timeline > *:nth-child(15){ animation-delay:10.5s; }
+.timeline > *:nth-child(16){ animation-delay:11.2s; }
+.timeline > *:nth-child(17){ animation-delay:11.9s; }
+
+@keyframes fadeUpStep{
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+/* Animation */
+@keyframes fadeUpStep{
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+</style>
+</head>
+
+<body>
+
+<img src="./Food Trends – AI Customer Intelligence_files/springboard-logo.png.png" class="logo">
+
+<!-- FIRST SLIDE -->
+<section class="slide gradient" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
+
+<h1 style="font-size:44px;font-weight:700;margin-bottom:15px;">
+Food Brands Understanding Customer Trends
+</h1>
+
+<p style="max-width:750px;font-size:16px;line-height:1.6;opacity:0.95;margin-bottom:35px;">
+Integrating structured survey data and unstructured customer feedback into Power BI dashboards 
+to generate actionable insights using sentiment analysis and behavioral clustering.
+</p>
+
+<h2 style="font-size:24px;margin-bottom:20px;font-weight:600;">
+Dashboard Modules
+</h2>
+
+<div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:20px;max-width:900px;">
+
+<div class="module-card" style="">
+<i class="fa-solid fa-database" style="font-size:22px;color:#1e3c72;margin-bottom:8px;"></i>
+<h3>Data Collection</h3>
+<p style="font-size:13px;">Unified structured &amp; unstructured model</p>
+</div>
+
+<div class="module-card" style="">
+<i class="fa-solid fa-brain" style="font-size:22px;color:#1e3c72;margin-bottom:8px;"></i>
+<h3>Sentiment Analysis</h3>
+<p style="font-size:13px;">NLP based feedback classification</p>
+</div>
+
+<div class="module-card" style="">
+<i class="fa-solid fa-chart-line" style="font-size:22px;color:#1e3c72;margin-bottom:8px;"></i>
+<h3>Product Insights</h3>
+<p style="font-size:13px;">Rating &amp; feature analysis</p>
+</div>
+
+<div class="module-card" style="">
+<i class="fa-solid fa-user-group" style="font-size:22px;color:#1e3c72;margin-bottom:8px;"></i>
+<h3>Customer Segmentation</h3>
+<p style="font-size:13px;">Behavioral clustering</p>
+</div>
+
+<div class="module-card" style="">
+<i class="fa-solid fa-lightbulb" style="font-size:22px;color:#1e3c72;margin-bottom:8px;"></i>
+<h3>Strategy and Innovation</h3>
+<p style="font-size:13px;">Trend &amp; growth insights</p>
+</div>
+
+<div class="module-card" style="">
+<i class="fa-solid fa-flag-checkered" style="font-size:22px;color:#1e3c72;margin-bottom:8px;"></i>
+<h3>Conclusion</h3>
+<p style="font-size:13px;">Data-driven strategic decision making</p>
+</div>
+
+</div>
+
+<div class="slide-number">11 / 11</div>
+</section>
+
+<!-- TEAM (FIXED 16:9 SAFE VERSION) -->
+<section class="slide light" style="
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+padding:60px 100px;
+">
+
+<h1 style="margin-bottom:20px;color:#ffffff;">
+<i class="fa-solid fa-users"></i> Team Members
+</h1>
+
+<!-- TEAM LEADER -->
+<div style="margin-bottom:25px;">
+<div class="team-card" style="width: 260px; border: 2px solid rgb(0, 114, 255); padding: 18px;">
+
+<i class="fa-solid fa-crown" style="font-size:26px;color:#f4b400;margin-bottom:8px;"></i>
+<h3 style="margin:4px 0;">Rekha Shri Giduthuri</h3>
+<p style="font-size:13px;font-weight:600;color:#0072ff;margin:3px 0;">
+Team Leader
+</p>
+<p style="font-size:12px;color:#555;margin:0;">
+Strategy • Coordination • Final Review
+</p>
+
+</div>
+</div>
+
+<!-- OTHER MEMBERS -->
+<div style="
+display:grid;
+grid-template-columns:repeat(3, 200px);
+gap:18px;
+justify-content:center;
+">
+
+
+
+<div class="team-card" style="padding: 15px;">
+<i class="fa-solid fa-brain"></i>
+<h3 style="font-size:15px;">Naitik Kanojiya</h3>
+<p style="font-size:12px;">Sentiment Analysis</p>
+</div>
+
+<div class="team-card" style="padding: 15px;">
+<i class="fa-solid fa-chart-line"></i>
+<h3 style="font-size:15px;">Naresh Kumar</h3>
+<p style="font-size:12px;">Product Insights</p>
+</div>
+
+<div class="team-card" style="padding: 15px;">
+<i class="fa-solid fa-user-group"></i>
+<h3 style="font-size:15px;">Rohit Ranjan</h3>
+<p style="font-size:12px;">Customer Segmentation</p>
+</div>
+
+<div class="team-card" style="padding: 15px;">
+<i class="fa-solid fa-lightbulb"></i>
+<h3 style="font-size:15px;">Nithya Thevath</h3>
+<p style="font-size:12px;">Strategy And Innovation</p>
+</div>
+<div class="team-card" style="padding: 15px;"><i class="fa-solid fa-chart-pie"></i>
+
+<h3 style="font-size:15px;">Nasina Ashrita</h3>
+<p style="font-size:12px;">Presentation</p>
+</div>
+
+<div class="team-card" style="padding: 15px;">
+<i class="fa-solid fa-database"></i>
+<h3 style="font-size:15px;">Gummalla Nagalakshmi</h3>
+<p style="font-size:12px;">Data Collection</p>
+</div>
+
+</div>
+
+
+<div class="slide-number">11 / 11</div>
+
+</section>
+
+
+<!-- DATA SLIDE 01 – UPDATED -->
+<section class="slide light">
+
+<h1 style="color:#fcfeff;">
+<i class="fa-solid fa-database"></i> Data Collection Framework
+</h1>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:25px;margin-top:20px;">
+
+<!-- Structured -->
+<div class="card" style="padding: 25px;">
+<h2 style="font-weight:700;margin-bottom:10px;color:#0077b6;">
+<i class="fa-solid fa-table"></i> Structured Data
+</h2>
+
+<ul style="line-height:1.6;font-size:14px;">
+<li><i class="fa-solid fa-user"></i> <b>Customer Demographics</b> – Age, Gender, Region</li>
+<li><i class="fa-solid fa-cart-shopping"></i> <b>Product Purchased</b></li>
+<li><i class="fa-solid fa-star"></i> <b>Ratings &amp; Satisfaction</b></li>
+<li><i class="fa-solid fa-repeat"></i> <b>Purchase Frequency</b></li>
+<li><i class="fa-solid fa-calendar"></i> <b>Date Tracking</b></li>
+</ul>
+</div>
+
+<!-- Unstructured -->
+<div class="card" style="padding: 25px;">
+<h2 style="font-weight:700;margin-bottom:10px;color:#0077b6;">
+<i class="fa-solid fa-comments"></i> Unstructured Data
+</h2>
+
+<ul style="line-height:1.6;font-size:14px;">
+<li><i class="fa-brands fa-facebook"></i> <b>Social Media Comments</b></li>
+<li><i class="fa-solid fa-mobile-screen"></i> <b>App Reviews</b></li>
+<li><i class="fa-solid fa-pen"></i> <b>Open Text Feedback</b></li>
+<li><i class="fa-solid fa-face-smile"></i> <b>Emoji &amp; Keyword Patterns</b></li>
+</ul>
+</div>
+
+</div>
+
+<div class="card" style="margin-top: 20px; padding: 25px;">
+<h2 style="font-weight:700;margin-bottom:10px;color:#0077b6;">
+<i class="fa-solid fa-link"></i> Data Integration &amp; Cleaning
+</h2>
+
+<ul style="line-height:1.6;font-size:14px;">
+<li><i class="fa-solid fa-broom"></i> <b>Cleaning &amp; Deduplication</b></li>
+<li><i class="fa-solid fa-diagram-project"></i> <b>Unified CustomerID Mapping</b></li>
+<li><i class="fa-solid fa-database"></i> <b>Centralized Power BI Model</b></li>
+</ul>
+</div>
+
+
+<div class="slide-number">11 / 11</div>
+
+</section>
+
+
+
+<!-- DATA SLIDE 02 – UPDATED -->
+<section class="slide light">
+
+<h1 style="color:#fbfeff;">
+<i class="fa-solid fa-sitemap"></i> Data Model &amp; Analytical Architecture
+</h1>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:25px;margin-top:20px;">
+
+<div class="card" style="padding: 25px;">
+<h2 style="font-weight:700;margin-bottom:10px;color:#0077b6;">
+<i class="fa-solid fa-layer-group"></i> Core Tables
+</h2>
+
+<ul style="line-height:1.6;font-size:14px;">
+<li><i class="fa-solid fa-users"></i> <b>Customer Table</b></li>
+<li><i class="fa-solid fa-box"></i> <b>Product Table</b></li>
+<li><i class="fa-solid fa-comment"></i> <b>Feedback Table</b></li>
+<li><i class="fa-solid fa-calendar-days"></i> <b>Date Table</b></li>
+</ul>
+</div>
+
+<div class="card" style="padding: 25px;">
+<h2 style="font-weight:700;margin-bottom:10px;color:#0077b6;">
+<i class="fa-solid fa-calculator"></i> Key Calculated Metrics
+</h2>
+
+<ul style="line-height:1.6;font-size:14px;">
+<li><i class="fa-solid fa-star-half-stroke"></i> <b>Average Rating</b></li>
+<li><i class="fa-solid fa-indian-rupee-sign"></i> <b>Revenue &amp; Spend</b></li>
+<li><i class="fa-solid fa-chart-line"></i> <b>Sentiment Score</b></li>
+<li><i class="fa-solid fa-user-group"></i> <b>Persona Classification</b></li>
+</ul>
+</div>
+
+</div>
+
+<div class="card" style="margin-top: 20px; padding: 25px;">
+<h2 style="font-weight:700;margin-bottom:10px;color:#0077b6;">
+<i class="fa-solid fa-diagram-project"></i> Analytical Framework
+</h2>
+
+<ul style="line-height:1.6;font-size:14px;">
+<li><i class="fa-solid fa-circle-nodes"></i> <b>Star Schema Architecture</b></li>
+<li><i class="fa-solid fa-filter"></i> <b>Relationship-Based Filtering</b></li>
+<li><i class="fa-solid fa-code"></i> <b>DAX KPI Measures</b></li>
+<li><i class="fa-solid fa-chart-pie"></i> <b>Dynamic Dashboard Integration</b></li>
+</ul>
+</div>
+
+
+<div class="slide-number">11 / 11</div>
+
+</section>
+
+<section class="slide light">
+
+<h1 style="color:#ffffff;font-size:42px;font-weight:700;text-align:center;">
+<i class="fa-solid fa-sitemap"></i> Project Flow
+</h1>
+
+<div class="flow-wrapper">
+
+<div class="timeline">
+
+<div class="timeline-step">
+<i class="fa-solid fa-lightbulb"></i>
+Problem Definition
+</div>
+
+<div class="flow-arrow">
+<i class="fa-solid fa-arrow-right"></i>
+</div>
+
+<div class="timeline-step">
+<i class="fa-solid fa-database"></i>
+Data Collection
+</div>
+
+<div class="flow-arrow">
+<i class="fa-solid fa-arrow-right"></i>
+</div>
+
+<div class="timeline-step">
+<i class="fa-solid fa-broom"></i>
+Data Cleaning
+</div>
+
+<div class="flow-arrow">
+<i class="fa-solid fa-arrow-right"></i>
+</div>
+
+<div class="timeline-step">
+<i class="fa-solid fa-gears"></i>
+Feature Engineering
+</div>
+
+<div class="flow-arrow">
+<i class="fa-solid fa-arrow-right"></i>
+</div>
+
+<div class="timeline-step">
+<i class="fa-solid fa-chart-line"></i>
+Product Analysis
+</div>
+
+<div class="flow-arrow">
+<i class="fa-solid fa-arrow-right"></i>
+</div>
+
+<div class="timeline-step">
+<i class="fa-solid fa-user-group"></i>
+Segmentation
+</div>
+
+<div class="flow-arrow">
+<i class="fa-solid fa-arrow-right"></i>
+</div>
+
+<div class="timeline-step">
+<i class="fa-solid fa-brain"></i>
+Sentiment Analysis
+</div>
+
+<div class="flow-arrow">
+<i class="fa-solid fa-arrow-right"></i>
+</div>
+
+<div class="timeline-step">
+<i class="fa-solid fa-desktop"></i>
+Dashboard
+</div>
+
+<div class="flow-arrow">
+<i class="fa-solid fa-arrow-right"></i>
+</div>
+
+<div class="timeline-step">
+<i class="fa-solid fa-chart-pie"></i>
+Insight Generation
+</div>
+
+</div>
+</div>
+
+</section>
+
+
+<!-- MILESTONE 01 -->
+<section class="slide light">
+<h1 style="color:#ffffff; font-size:38px; font-weight:700;">
+<i class="fa-solid fa-database"></i> 
+Module 01 – Data Modeling &amp; Preparation
+</h1>
+
+<div class="card" style="">
+
+<div class="section-title"><i class="fa-solid fa-circle-info"></i> Overview</div>
+<ul>
+<li>Integrated structured and unstructured data sources.</li>
+<li>Developed star schema architecture.</li>
+<li>Created calculated columns and measures.</li>
+</ul>
+
+<div class="section-title"><i class="fa-solid fa-lightbulb"></i> Key Insights</div>
+<ul>
+<li>Weekly customers showed highest satisfaction levels.</li>
+<li>Celebration dining generated highest average spend.</li>
+<li>High-rated cuisines maintained consistent loyalty.</li>
+</ul>
+
+</div>
+
+
+<div class="slide-number">11 / 11</div>
+</section>
+
+<!-- MILESTONE 02 -->
+<section class="slide light">
+<h1 style="color:#ffffff; font-size:38px; font-weight:700;">
+<i class="fa-solid fa-brain"></i> 
+Module 02 – Sentiment Analysis
+</h1>
+
+<div class="card" style="">
+
+<div class="section-title"><i class="fa-solid fa-robot"></i> Implementation</div>
+<ul>
+<li>Applied NLP sentiment scoring logic.</li>
+<li>Classified Positive, Neutral &amp; Negative feedback.</li>
+<li>Generated sentiment score scale (&gt;= 0.05 to &lt;=).</li>
+</ul>
+
+<div class="section-title"><i class="fa-solid fa-chart-line"></i> Insights</div>
+<ul>
+<li>55% feedback categorized as positive.</li>
+<li>Loyal customers express stronger positive sentiment.</li>
+<li>Specific product categories drive negative trends.</li>
+</ul>
+
+</div>
+
+
+<div class="slide-number">11 / 11</div>
+</section>
+
+<!-- MILESTONE 03 -->
+<section class="slide light">
+<h1 style="color:#ffffff; font-size:38px; font-weight:700;">
+<i class="fa-solid fa-chart-pie" style="color:#ffffff;"></i> 
+Module 03 – Product Insights
+</h1>
+
+<div class="card" style="">
+
+<div class="section-title"><i class="fa-solid fa-calculator"></i> Measures Developed</div>
+<ul>
+<li>Total Revenue &amp; Spend Metrics.</li>
+<li>Revenue Contribution Percentage.</li>
+<li>Ranking &amp; Correlation Analysis.</li>
+</ul>
+
+<div class="section-title"><i class="fa-solid fa-arrow-trend-up"></i> Product Insights</div>
+<ul>
+<li>Positive sentiment strongly correlates with revenue growth.</li>
+<li>Premium products yield higher average spend.</li>
+<li>Top-performing categories contribute majority revenue share.</li>
+</ul>
+
+</div>
+
+
+<div class="slide-number">11 / 11</div>
+</section>
+
+<!-- MILESTONE 04 -->
+<section class="slide light">
+<h1 style="color:#ffffff; font-size:38px; font-weight:700;">
+<i class="fa-solid fa-user-group" style="color:#ffffff;"></i> 
+Module 04 – Customer Segmentation
+</h1>
+<div class="card" style="">
+
+<div class="section-title"><i class="fa-solid fa-layer-group"></i> Segmentation Logic</div>
+<ul>
+<li>Created Age Group classification.</li>
+<li>Identified Loyal, Neutral &amp; At-Risk personas.</li>
+<li>Mapped behavior across purchase channels.</li>
+</ul>
+
+<div class="section-title"><i class="fa-solid fa-users"></i> Insights</div>
+<ul>
+<li>Loyal Promoters drive majority revenue share.</li>
+<li>At-Risk customers require retention campaigns.</li>
+<li>Under-25 demographic shows highest engagement.</li>
+</ul>
+
+</div>
+
+
+<div class="slide-number">11 / 11</div>
+</section>
+
+<!-- MODULE 05 – BLUE ACCENT -->
+<section class="slide light">
+
+<h1 style="color:#ffffff;">
+<i class="fa-solid fa-lightbulb"></i> Module 05 – Strategy &amp; Innovation
+</h1>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:25px;margin-top:25px;">
+
+<!-- SECTION 1 -->
+<div class="card" style="padding: 25px; border: 2px solid rgb(19, 174, 241);">
+<h2 style="font-weight:700;margin-bottom:10px;color:#13aef1;">
+<i class="fa-solid fa-bullseye"></i> Strategic Focus
+</h2>
+
+<ul style="line-height:1.6;font-size:14px;">
+<li><i class="fa-solid fa-users"></i> <b>Customer-Centric Marketing</b> aligned with sentiment insights.</li>
+<li><i class="fa-solid fa-chart-line"></i> <b>Revenue Optimization</b> from high-performing segments.</li>
+<li><i class="fa-solid fa-user-check"></i> <b>Retention Planning</b> for At-Risk customers.</li>
+</ul>
+</div>
+
+<!-- SECTION 2 -->
+<div class="card" style="padding: 25px; border: 2px solid rgb(19, 174, 241);">
+<h2 style="font-weight:700;margin-bottom:10px;color:#13aef1;">
+<i class="fa-solid fa-gears"></i> Innovation Drivers
+</h2>
+
+<ul style="line-height:1.6;font-size:14px;">
+<li><i class="fa-solid fa-brain"></i> <b>Product Enhancement</b> using sentiment data.</li>
+<li><i class="fa-solid fa-star"></i> <b>Quality Improvements</b> from negative feedback analysis.</li>
+<li><i class="fa-solid fa-chart-pie"></i> <b>Feature Score Optimization</b>.</li>
+</ul>
+</div>
+
+</div>
+
+<!-- FULL WIDTH SECTION -->
+<div class="card" style="margin-top: 25px; padding: 25px; border: 2px solid rgb(19, 174, 241);">
+<h2 style="font-weight:700;margin-bottom:10px;color:#13aef1;">
+<i class="fa-solid fa-rocket"></i> Growth &amp; Expansion Roadmap
+</h2>
+
+<ul style="line-height:1.6;font-size:14px;">
+<li><i class="fa-solid fa-map-location-dot"></i> <b>Regional Expansion</b> into high-sentiment markets.</li>
+<li><i class="fa-solid fa-handshake"></i> <b>Strategic Partnerships</b> with digital platforms.</li>
+<li><i class="fa-solid fa-award"></i> <b>Loyalty Programs</b> to strengthen repeat purchases.</li>
+<li><i class="fa-solid fa-database"></i> <b>Predictive Analytics</b> for demand forecasting.</li>
+</ul>
+</div>
+
+
+<div class="slide-number">11 / 11</div>
+
+</section>
+
+<!-- CONCLUSION -->
+<section class="slide gradient active">
+
+<h1 style="color:white;">
+<i class="fa-solid fa-flag-checkered"></i> Conclusion
+</h1>
+
+<div class="card" style="max-width: 900px; margin: auto; padding: 30px; color: rgb(31, 41, 55);">
+
+<h2 style="font-weight:700;margin-bottom:15px;color:#1e3c72;">
+<i class="fa-solid fa-clipboard-check"></i> Overall Findings
+</h2>
+
+<ul style="line-height:1.8;font-size:15px;">
+<li>Overall sentiment remains positive (55%), with an average score of 0.33, indicating stable brand perception.</li>
+<li>Loyal customers represent the largest segment and contribute significantly higher ratings, reinforcing strong customer retention.</li>
+<li>A small but important segment of at-risk customers requires targeted engagement strategies.</li>
+<li>Product-level sentiment differences highlight clear opportunities for quality and experience improvement.</li>
+<li>Online channels and younger demographics drive higher engagement, suggesting strong digital growth potential.</li>
+<li>Higher satisfaction levels are directly associated with increased repeat purchase behavior.</li>
+<li>Consistently high-rated products show stronger long-term customer loyalty.</li>
+<li>Negative feedback is concentrated around specific service and product factors, allowing focused corrective action.</li>
+<li>Customer segmentation improves clarity in identifying revenue-driving groups.</li>
+<li>Data-driven insights support more structured planning and operational improvements.</li>
+</ul>
+
+</div>
+
+</section>
+<script>
+let currentSlide = 0;
+const slides = document.querySelectorAll(".slide");
+const slideNumbers = document.querySelectorAll(".slide-number");
+
+function resetAnimations(slide){
+    const animatedElements = slide.querySelectorAll(".card, .module-card, .team-card");
+    animatedElements.forEach(el => {
+        el.style.animation = "none";
+        el.offsetHeight; // force reflow
+        el.style.animation = "";
+    });
+}
+
+function showSlide(index){
+    slides.forEach(s => s.classList.remove("active"));
+    slides[index].classList.add("active");
+
+    resetAnimations(slides[index]);  // 🔥 important line
+
+    slideNumbers.forEach(sn => sn.innerText = (index+1)+" / "+slides.length);
+}
+
+function nextSlide(){
+    if(currentSlide < slides.length - 1){
+        currentSlide++;
+        showSlide(currentSlide);
+    }
+}
+
+function prevSlide(){
+    if(currentSlide > 0){
+        currentSlide--;
+        showSlide(currentSlide);
+    }
+}
+
+document.addEventListener("keydown",function(e){
+    if(e.key==="ArrowRight") nextSlide();
+    if(e.key==="ArrowLeft") prevSlide();
+});
+
+showSlide(0);
+</script>
+
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+</body></html>
