@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<!-- saved from url=(0039)http://127.0.0.1:5500/presentation.html -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Food Trends – AI Customer Intelligence</title>
+<html>
+<head>
+<title>Food Trends - AI Customer Intelligence</title>
 
-<link href="./Food Trends – AI Customer Intelligence_files/css2" rel="stylesheet">
-<link rel="stylesheet" href="./Food Trends – AI Customer Intelligence_files/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 body{
@@ -37,9 +37,10 @@ z-index:1;
 
 .active{
 display:block;
-animation: slideIn 0.5s ease;
+animation: slideIn 0.65s cubic-bezier(0.2,0.8,0.2,1);
 z-index:10;
 }
+
 
 @keyframes slideIn{
 from{opacity:0; transform:translateX(60px);}
@@ -70,6 +71,25 @@ font-weight:600;
 margin-bottom:25px;
 }
 
+.slide h1,
+.slide h2,
+.slide p{
+opacity:0;
+transform:translateY(16px);
+}
+
+.slide.active h1{
+animation:fadeUpText 0.65s ease forwards;
+}
+
+.slide.active h2{
+animation:fadeUpText 0.65s ease 0.15s forwards;
+}
+
+.slide.active p{
+animation:fadeUpText 0.65s ease 0.2s forwards;
+}
+
 .section-title{
 font-size:18px;
 font-weight:600;
@@ -79,6 +99,12 @@ display:flex;
 align-items:center;
 gap:10px;
 color:#0072ff;
+opacity:0;
+transform:translateY(12px);
+}
+
+.slide.active .section-title{
+animation:fadeUpText 0.55s ease forwards;
 }
 
 ul{
@@ -86,6 +112,24 @@ padding-left:20px;
 line-height:1.8;
 font-size:16px;
 }
+
+.card ul li{
+opacity:0;
+transform:translateX(-10px);
+}
+
+.slide.active .card ul:not(.conclusion-list) li{
+animation:listReveal 0.45s ease forwards;
+}
+
+.slide.active .card ul:not(.conclusion-list) li:nth-child(1){ animation-delay:0.2s; }
+.slide.active .card ul:not(.conclusion-list) li:nth-child(2){ animation-delay:0.3s; }
+.slide.active .card ul:not(.conclusion-list) li:nth-child(3){ animation-delay:0.4s; }
+.slide.active .card ul:not(.conclusion-list) li:nth-child(4){ animation-delay:0.5s; }
+.slide.active .card ul:not(.conclusion-list) li:nth-child(5){ animation-delay:0.6s; }
+.slide.active .card ul:not(.conclusion-list) li:nth-child(6){ animation-delay:0.7s; }
+.slide.active .card ul:not(.conclusion-list) li:nth-child(7){ animation-delay:0.8s; }
+.slide.active .card ul:not(.conclusion-list) li:nth-child(8){ animation-delay:0.9s; }
 
 /* CARD ANIMATION (single definition only) */
 .card{
@@ -97,6 +141,10 @@ margin-top:25px;
 opacity:0;
 transform:translateY(30px);
 animation:cardAppear 0.8s ease forwards;
+}
+
+.slide.active .card{
+animation:cardReveal 0.6s ease forwards;
 }
 
 @keyframes cardAppear{
@@ -116,14 +164,56 @@ box-shadow:0 10px 25px rgba(0,0,0,0.15);
 opacity:0;
 transform:translateY(30px);
 animation:cardAppear 0.8s ease forwards;
+transition:transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.module-card:nth-child(1){ animation-delay:0.2s; }
-.module-card:nth-child(2){ animation-delay:0.4s; }
-.module-card:nth-child(3){ animation-delay:0.6s; }
-.module-card:nth-child(4){ animation-delay:0.8s; }
-.module-card:nth-child(5){ animation-delay:1s; }
-.module-card:nth-child(6){ animation-delay:1.2s; }
+.slide.active .module-card:hover{
+transform:translateY(-7px) scale(1.01);
+box-shadow:0 18px 36px rgba(0,0,0,0.2);
+}
+
+.slide.active .module-card{
+animation:cardAppear 0.8s ease forwards;
+}
+
+.module-card:nth-child(1){ animation-delay:0.5s; }
+.module-card:nth-child(2){ animation-delay:1.35s; }
+.module-card:nth-child(3){ animation-delay:2.2s; }
+.module-card:nth-child(4){ animation-delay:3.05s; }
+.module-card:nth-child(5){ animation-delay:3.9s; }
+.module-card:nth-child(6){ animation-delay:4.75s; }
+
+.first-slide{
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding-top:110px;
+padding-bottom:110px;
+}
+
+.first-slide h1{
+max-width:860px;
+margin:0 0 14px;
+}
+
+.first-slide p{
+max-width:750px;
+margin:0 0 28px;
+}
+
+.first-slide h2{
+margin:0 0 18px;
+}
+
+.first-slide .module-grid{
+display:grid;
+grid-template-columns:repeat(3, 1fr);
+gap:20px;
+max-width:900px;
+width:100%;
+}
 
 /* TEAM CARDS */
 .team-card{
@@ -133,16 +223,27 @@ border-radius:20px;
 box-shadow:0 20px 50px rgba(0,0,0,0.08);
 text-align:center;
 opacity:0;
-transform:translateY(30px);
+transform:translateY(30px) rotateX(10deg);
+animation:cardAppear 0.8s ease forwards;
+transform-origin:center top;
+transition:transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.slide.active .team-card:hover{
+transform:translateY(-8px);
+box-shadow:0 24px 48px rgba(0,0,0,0.2);
+}
+
+.slide.active .team-card{
 animation:cardAppear 0.8s ease forwards;
 }
 
-.team-card:nth-child(1){ animation-delay:0.2s; }
-.team-card:nth-child(2){ animation-delay:0.4s; }
-.team-card:nth-child(3){ animation-delay:0.6s; }
-.team-card:nth-child(4){ animation-delay:0.8s; }
-.team-card:nth-child(5){ animation-delay:1s; }
-.team-card:nth-child(6){ animation-delay:1.2s; }
+.team-card:nth-child(1){ animation-delay:0.5s; }
+.team-card:nth-child(2){ animation-delay:1.35s; }
+.team-card:nth-child(3){ animation-delay:2.2s; }
+.team-card:nth-child(4){ animation-delay:3.05s; }
+.team-card:nth-child(5){ animation-delay:3.9s; }
+.team-card:nth-child(6){ animation-delay:4.75s; }
 
 .slide.active .card{
 animation:cardReveal 0.6s ease forwards;
@@ -172,7 +273,433 @@ right:30px;
 font-size:14px;
 color:#888;
 }
-/* ===== PROJECT FLOW – CONSULTING STYLE ===== */
+
+.slide-nav-btn{
+width:34px;
+height:34px;
+border-radius:999px;
+border:1px solid rgba(255,255,255,0.45);
+background:rgba(15,23,42,0.55);
+color:#fff;
+font-size:12px;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+backdrop-filter:blur(4px);
+transition:transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
+position:fixed;
+bottom:16px;
+z-index:1200;
+}
+
+.slide-nav-btn:hover{
+transform:translateY(-1px);
+background:rgba(15,23,42,0.72);
+}
+
+.slide-nav-btn:disabled{
+opacity:0.35;
+cursor:not-allowed;
+transform:none;
+}
+
+#prevBtn{
+left:16px;
+}
+
+#nextBtn{
+right:16px;
+}
+
+
+/* Milestone chart visuals */
+.milestone-grid{
+display:grid;
+grid-template-columns:1.2fr 1fr;
+gap:24px;
+align-items:start;
+}
+
+.chart-card{
+background:linear-gradient(165deg,#ffffff 0%,#edf5ff 100%);
+border:1px solid #cfe3ff;
+border-radius:18px;
+padding:18px;
+box-shadow:0 12px 26px rgba(16,24,40,0.10);
+position:relative;
+overflow:hidden;
+}
+
+.chart-card::after{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(110deg,transparent 32%,rgba(255,255,255,0.55) 50%,transparent 68%);
+transform:translateX(-130%);
+}
+
+.slide.active .chart-card::after{
+animation:chartShine 1.2s ease 0.25s 1;
+}
+
+.slide.active .chart-card{
+animation:none;
+}
+
+.chart-title{
+font-size:12px;
+font-weight:700;
+color:#0e4f89;
+margin-bottom:10px;
+letter-spacing:0.7px;
+text-transform:uppercase;
+}
+
+.metric-bars{
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+
+.metric-row{
+display:grid;
+grid-template-columns:92px 1fr 48px;
+gap:10px;
+align-items:center;
+font-size:12px;
+font-weight:600;
+color:#0f172a;
+}
+
+.metric-track{
+height:12px;
+border-radius:999px;
+background:#dbeafe;
+overflow:hidden;
+box-shadow:inset 0 1px 3px rgba(15,23,42,0.20);
+}
+
+.metric-fill{
+height:100%;
+border-radius:999px;
+background:linear-gradient(90deg,#38bdf8 0%,#2563eb 70%,#1d4ed8 100%);
+transform-origin:left center;
+transform:scaleX(0);
+}
+
+.slide.active .metric-row:nth-child(1) .metric-fill{
+animation:growX 1s cubic-bezier(0.22,1,0.36,1) 0.15s forwards;
+}
+
+.slide.active .metric-row:nth-child(2) .metric-fill{
+animation:growX 1s cubic-bezier(0.22,1,0.36,1) 0.3s forwards;
+}
+
+.slide.active .metric-row:nth-child(3) .metric-fill{
+animation:growX 1s cubic-bezier(0.22,1,0.36,1) 0.45s forwards;
+}
+
+.slide.active .metric-fill{
+position:relative;
+}
+
+.slide.active .metric-fill::after{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(90deg,transparent,rgba(255,255,255,0.6),transparent);
+transform:translateX(-120%);
+animation:none;
+}
+
+.metric-row > div:last-child{
+opacity:0;
+transform:translateY(6px);
+}
+
+.slide.active .metric-row:nth-child(1) > div:last-child{
+animation:fadeUpText 0.45s ease 0.65s forwards;
+}
+
+.slide.active .metric-row:nth-child(2) > div:last-child{
+animation:fadeUpText 0.45s ease 0.8s forwards;
+}
+
+.slide.active .metric-row:nth-child(3) > div:last-child{
+animation:fadeUpText 0.45s ease 0.95s forwards;
+}
+
+.donut-wrap{
+display:flex;
+justify-content:center;
+align-items:center;
+padding-top:6px;
+position:relative;
+min-height:165px;
+}
+
+.donut{
+width:148px;
+height:148px;
+border-radius:50%;
+background:conic-gradient(#16a34a 0 55%, #f59e0b 55% 82%, #ef4444 82% 100%);
+display:flex;
+align-items:center;
+justify-content:center;
+box-shadow:0 12px 26px rgba(16,24,40,0.20);
+transform:scale(0.65);
+opacity:0;
+}
+
+.slide.active .donut{
+animation:donutIn 1.05s cubic-bezier(0.2,0.95,0.2,1) 0.2s forwards;
+}
+
+.donut::before{
+content:"";
+width:84px;
+height:84px;
+background:#ffffff;
+border-radius:50%;
+}
+
+.donut-label{
+position:absolute;
+text-align:center;
+font-size:12px;
+font-weight:700;
+color:#0f172a;
+line-height:1.2;
+opacity:0;
+transform:translateY(8px);
+}
+
+.slide.active .donut-label{
+animation:fadeLift 0.7s ease 0.65s forwards;
+}
+
+.sentiment-legend{
+display:grid;
+grid-template-columns:1fr;
+gap:6px;
+margin-top:8px;
+font-size:12px;
+}
+
+.legend-item{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:6px 8px;
+background:rgba(255,255,255,0.7);
+border-radius:8px;
+border:1px solid #dce9fb;
+}
+
+.legend-left{
+display:flex;
+align-items:center;
+gap:8px;
+font-weight:600;
+color:#1f2937;
+}
+
+.legend-dot{
+width:9px;
+height:9px;
+border-radius:50%;
+}
+
+.trend-svg{
+width:100%;
+height:140px;
+overflow:visible;
+}
+
+.trend-grid{
+stroke:#bfdbfe;
+stroke-width:1;
+stroke-dasharray:3 4;
+}
+
+.trend-line-main,
+.trend-line-sub{
+fill:none;
+stroke-linecap:round;
+stroke-linejoin:round;
+stroke-dasharray:320;
+stroke-dashoffset:320;
+}
+
+.trend-line-main{
+stroke:#1d4ed8;
+stroke-width:4;
+}
+
+.trend-line-sub{
+stroke:#22c55e;
+stroke-width:3;
+stroke-dasharray:320 8;
+}
+
+.slide.active .trend-line-main{
+animation:drawLine 1s ease 0.2s forwards;
+}
+
+.slide.active .trend-line-sub{
+animation:drawLine 1s ease 0.4s forwards;
+}
+
+.trend-end{
+opacity:0;
+transform-origin:center;
+}
+
+.slide.active .trend-end{
+animation:endPulse 0.7s ease 1.2s forwards;
+}
+
+.slide.active .trend-end:nth-of-type(1){
+animation:endPulse 0.7s ease 1.2s forwards;
+}
+
+.slide.active .trend-end:nth-of-type(2){
+animation:endPulse 0.7s ease 1.2s forwards;
+}
+
+.seg-chart{
+display:flex;
+gap:8px;
+align-items:flex-end;
+height:120px;
+padding:6px 2px 0;
+}
+
+.seg-bar{
+flex:1;
+border-radius:8px 8px 0 0;
+background:linear-gradient(180deg,#38bdf8,#0284c7);
+position:relative;
+min-height:20px;
+transform-origin:bottom;
+transform:scaleY(0);
+}
+
+.slide.active .seg-bar:nth-child(1){
+animation:growY 0.85s cubic-bezier(0.2,0.9,0.2,1) 0.15s forwards;
+}
+
+.slide.active .seg-bar:nth-child(2){
+animation:growY 0.85s cubic-bezier(0.2,0.9,0.2,1) 0.3s forwards;
+}
+
+.slide.active .seg-bar:nth-child(3){
+animation:growY 0.85s cubic-bezier(0.2,0.9,0.2,1) 0.45s forwards;
+}
+
+.seg-bar span{
+position:absolute;
+bottom:100%;
+left:50%;
+transform:translateX(-50%);
+font-size:11px;
+font-weight:600;
+color:#0f172a;
+margin-bottom:4px;
+opacity:0;
+}
+
+.slide.active .seg-bar span{
+animation:fadeLift 0.55s ease 0.95s forwards;
+}
+
+.seg-labels{
+display:flex;
+gap:8px;
+font-size:11px;
+color:#334155;
+margin-top:6px;
+}
+
+.seg-labels div{
+flex:1;
+text-align:center;
+opacity:0;
+transform:translateY(6px);
+}
+
+.slide.active .seg-labels div{
+animation:fadeUpText 0.5s ease 0.9s forwards;
+}
+
+@keyframes growX{
+from{transform:scaleX(0);}
+to{transform:scaleX(1);}
+}
+
+@keyframes growY{
+from{transform:scaleY(0);}
+to{transform:scaleY(1);}
+}
+
+@keyframes drawLine{
+from{stroke-dashoffset:320;}
+to{stroke-dashoffset:0;}
+}
+
+@keyframes endPulse{
+0%{opacity:0;transform:scale(0.2);}
+70%{opacity:1;transform:scale(1.2);}
+100%{opacity:1;transform:scale(1);}
+}
+
+@keyframes donutIn{
+0%{opacity:0;transform:scale(0.78);}
+75%{opacity:1;transform:scale(1.04);}
+100%{opacity:1;transform:scale(1);}
+}
+
+@keyframes fadeLift{
+from{opacity:0;transform:translateY(8px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+@keyframes chartShine{
+from{transform:translateX(-130%);}
+to{transform:translateX(130%);}
+}
+
+@keyframes fadeUpText{
+from{opacity:0;transform:translateY(16px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+@media (max-width:1200px){
+.milestone-grid{
+grid-template-columns:1fr;
+}
+.donut{
+width:132px;
+height:132px;
+}
+}
+
+@media (max-width:768px){
+.slide-nav-btn{
+width:32px;
+height:32px;
+font-size:11px;
+bottom:calc(10px + env(safe-area-inset-bottom));
+}
+#prevBtn{
+left:10px;
+}
+#nextBtn{
+right:10px;
+}
+}
+/* ===== PROJECT FLOW - CONSULTING STYLE ===== */
 
 .flow-wrapper{
 display:flex;
@@ -180,7 +707,7 @@ flex-direction:column;
 align-items:center;
 justify-content:center;
 height:75%;
-gap:30px;
+gap:24px;
 }
 
 .timeline{
@@ -188,144 +715,434 @@ display:flex;
 flex-wrap:wrap;
 justify-content:center;
 align-items:center;
-gap:18px;
-max-width:1100px;
+gap:14px;
+max-width:1200px;
 }
 
 /* Step Card */
 .timeline-step{
-min-width:180px;
-padding:16px 18px;
-border-radius:14px;
-background:linear-gradient(135deg,#ffffff,#f1f5f9);
-box-shadow:0 12px 30px rgba(0,0,0,0.08);
+min-width:210px;
+padding:20px 20px;
+border-radius:16px;
+background:linear-gradient(145deg,#ffffff,#edf4ff);
+border:1px solid #d2e4ff;
+box-shadow:0 10px 24px rgba(15,23,42,0.12);
 text-align:center;
-font-size:13px;
+font-size:15px;
 font-weight:600;
 color:#1f2937;
-
 opacity:0;
-transform:translateY(25px);
-animation:fadeUpStep 0.6s ease forwards;
+transform:translateY(14px) scale(0.96);
+animation:flowStepIn 0.45s ease forwards, flowStepHighlight 0.75s ease forwards;
 }
 
 /* Blue Accent Border */
 .timeline-step{
-border-top:4px solid #0072ff;
+border-top:4px solid #0ea5e9;
 }
 
 /* Icon */
 .timeline-step{
-min-width:240px;          /* wider card */
-padding:26px 30px;        /* more inner spacing */
-font-size:20px;           /* slightly bigger text */
-border-radius:28px;       /* smoother corners */
+line-height:1.3;
+}
+
+.timeline-step i{
+display:block;
+width:42px;
+height:42px;
+line-height:42px;
+margin:0 auto 10px;
+border-radius:50%;
+background:linear-gradient(135deg,#0284c7,#2563eb);
+color:white;
+font-size:18px;
+box-shadow:0 6px 14px rgba(37,99,235,0.3);
 }
 
 /* Arrow */
 .flow-arrow{
-font-size:25px;
-color:#f00505;
+font-size:17px;
+color:#7fb6df;
 opacity:0;
-animation:fadeUpStep 0.6s ease forwards;
+animation:flowConnectorIn 0.4s ease forwards, flowConnectorGlow 0.55s ease forwards;
+width:24px;
+text-align:center;
+}
+
+.slide.active .flow-arrow i{
+animation:none;
+}
+
+.slide.active .timeline-step{
+animation:flowStepIn 0.45s ease forwards, flowStepHighlight 0.75s ease forwards;
 }
 
 /* Reset animation */
-.timeline-step,
+.timeline-step{
+opacity:0;
+transform:translateY(14px);
+animation:flowStepIn 0.45s ease forwards, flowStepHighlight 0.75s ease forwards;
+}
+
 .flow-arrow{
 opacity:0;
-transform:translateY(25px);
-animation:fadeUpStep 0.6s ease forwards;
+transform:scaleX(0.55);
+animation:flowConnectorIn 0.4s ease forwards, flowConnectorGlow 0.55s ease forwards;
 }
 
 /* Sequential delays for EVERY child in order */
-.timeline > *:nth-child(1){ animation-delay:0.7s; }
-.timeline > *:nth-child(2){ animation-delay:1.4s; }
-.timeline > *:nth-child(3){ animation-delay:2.1s; }
-.timeline > *:nth-child(4){ animation-delay:2.8s; }
-.timeline > *:nth-child(5){ animation-delay:3.5s; }
-.timeline > *:nth-child(6){ animation-delay:4.2s; }
-.timeline > *:nth-child(7){ animation-delay:4.9s; }
-.timeline > *:nth-child(8){ animation-delay:5.6s; }
-.timeline > *:nth-child(9){ animation-delay:6.3s; }
-.timeline > *:nth-child(10){ animation-delay:7.0s; }
-.timeline > *:nth-child(11){ animation-delay:7.7s; }
-.timeline > *:nth-child(12){ animation-delay:8.4s; }
-.timeline > *:nth-child(13){ animation-delay:9.1s; }
-.timeline > *:nth-child(14){ animation-delay:9.8s; }
-.timeline > *:nth-child(15){ animation-delay:10.5s; }
-.timeline > *:nth-child(16){ animation-delay:11.2s; }
-.timeline > *:nth-child(17){ animation-delay:11.9s; }
+.timeline > *:nth-child(1){ --flow-d:0.55s; }
+.timeline > *:nth-child(2){ --flow-d:0.75s; }
+.timeline > *:nth-child(3){ --flow-d:0.95s; }
+.timeline > *:nth-child(4){ --flow-d:1.15s; }
+.timeline > *:nth-child(5){ --flow-d:1.35s; }
+.timeline > *:nth-child(6){ --flow-d:1.55s; }
+.timeline > *:nth-child(7){ --flow-d:1.75s; }
+.timeline > *:nth-child(8){ --flow-d:1.95s; }
+.timeline > *:nth-child(9){ --flow-d:2.15s; }
+.timeline > *:nth-child(10){ --flow-d:2.35s; }
+.timeline > *:nth-child(11){ --flow-d:2.55s; }
+.timeline > *:nth-child(12){ --flow-d:2.75s; }
+.timeline > *:nth-child(13){ --flow-d:2.95s; }
+.timeline > *:nth-child(14){ --flow-d:3.15s; }
+.timeline > *:nth-child(15){ --flow-d:3.35s; }
+.timeline > *:nth-child(16){ --flow-d:3.55s; }
+.timeline > *:nth-child(17){ --flow-d:3.75s; }
 
-@keyframes fadeUpStep{
+.timeline > *{
+animation-delay:var(--flow-d), calc(var(--flow-d) + 0.34s);
+}
+
+@keyframes flowStepIn{
+from{
+opacity:0;
+transform:translateY(14px) scale(0.96);
+}
 to{
 opacity:1;
-transform:translateY(0);
+transform:translateY(0) scale(1);
 }
 }
-/* Animation */
-@keyframes fadeUpStep{
+
+@keyframes flowStepHighlight{
+0%{
+background:linear-gradient(145deg,#ffffff,#edf4ff);
+box-shadow:0 10px 24px rgba(15,23,42,0.12);
+}
+50%{
+background:linear-gradient(145deg,#f0f9ff,#dbeafe);
+box-shadow:0 0 0 2px rgba(14,165,233,0.45), 0 16px 30px rgba(37,99,235,0.22);
+}
+100%{
+background:linear-gradient(145deg,#ffffff,#edf4ff);
+box-shadow:0 10px 24px rgba(15,23,42,0.12);
+}
+}
+
+@keyframes flowConnectorIn{
+from{
+opacity:0;
+transform:scaleX(0.55);
+}
 to{
 opacity:1;
-transform:translateY(0);
+transform:scaleX(1);
 }
+}
+
+@keyframes flowConnectorGlow{
+0%{color:#7fb6df; text-shadow:none;}
+50%{color:#0ea5e9; text-shadow:0 0 10px rgba(14,165,233,0.7);}
+100%{color:#7fb6df; text-shadow:none;}
+}
+
+/* Deterministic project flow sequence (JS-driven) */
+.timeline-step,
+.flow-arrow{
+animation:none !important;
+transition:all 0.32s ease;
+}
+
+.timeline > *{
+animation-delay:0s !important;
+opacity:0.3;
+transform:none;
+}
+
+.timeline-step.is-current{
+opacity:1;
+transform:scale(1.06);
+background:linear-gradient(145deg,#f0f9ff,#dbeafe);
+box-shadow:0 0 0 2px rgba(14,165,233,0.45), 0 16px 30px rgba(37,99,235,0.22);
+}
+
+.timeline-step.is-passed{
+opacity:1;
+transform:scale(1);
+}
+
+.flow-arrow.is-current{
+opacity:1;
+transform:scale(1.15);
+color:#0ea5e9;
+text-shadow:0 0 10px rgba(14,165,233,0.6);
+}
+
+.flow-arrow.is-passed{
+opacity:0.9;
+color:#60a5fa;
+}
+
+/* Module 05 visuals */
+.strategy-bars{
+margin-top:14px;
+display:flex;
+flex-direction:column;
+gap:8px;
+}
+
+.strategy-bar{
+display:grid;
+grid-template-columns:115px 1fr 34px;
+gap:8px;
+align-items:center;
+font-size:12px;
+font-weight:600;
+color:#0f172a;
+}
+
+.strategy-track{
+height:8px;
+border-radius:999px;
+background:#dbeafe;
+overflow:hidden;
+}
+
+.strategy-fill{
+height:100%;
+background:linear-gradient(90deg,#0ea5e9,#2563eb);
+transform:scaleX(0);
+transform-origin:left;
+}
+
+.innovation-grid{
+margin-top:14px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+}
+
+.innovation-ring{
+width:80px;
+height:80px;
+border-radius:50%;
+background:conic-gradient(#0284c7 var(--pct), #dbeafe 0);
+position:relative;
+display:flex;
+align-items:center;
+justify-content:center;
+margin:0 auto;
+opacity:0;
+transform:scale(0.9);
+}
+
+.innovation-ring::before{
+content:"";
+position:absolute;
+width:54px;
+height:54px;
+border-radius:50%;
+background:white;
+}
+
+.innovation-ring span{
+position:relative;
+font-size:11px;
+font-weight:700;
+color:#0f172a;
+}
+
+.innovation-label{
+margin-top:6px;
+text-align:center;
+font-size:11px;
+font-weight:600;
+color:#1e3a5f;
+}
+
+.roadmap-strip{
+margin-top:14px;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:8px;
+}
+
+.roadmap-block{
+padding:10px 8px;
+border-radius:10px;
+background:linear-gradient(135deg,#eff6ff,#dbeafe);
+border:1px solid #cfe3ff;
+text-align:center;
+font-size:11px;
+font-weight:700;
+color:#0b4f8a;
+opacity:0;
+transform:translateY(8px);
+}
+
+@keyframes listReveal{
+from{opacity:0;transform:translateX(-10px);}
+to{opacity:1;transform:translateX(0);}
+}
+
+/* Module 05: fit content + live motion */
+.module5-slide{
+overflow:hidden !important;
+padding-top:calc(58px - 3cm);
+padding-bottom:36px;
+}
+
+.module5-slide .module5-grid{
+margin-top:18px !important;
+}
+
+.module5-slide .card{
+margin-top:16px !important;
+}
+
+.slide.active.module5-slide .strategy-fill{
+animation:growX 0.8s ease forwards, strategyPulse 2.6s ease-in-out 1s infinite;
+}
+
+.slide.active.module5-slide .innovation-ring{
+animation:ringIn 0.55s ease forwards, ringFloat 2.8s ease-in-out 0.9s infinite;
+}
+
+.slide.active.module5-slide .innovation-grid > div:nth-child(1) .innovation-ring{animation-delay:0.2s,1.0s;}
+.slide.active.module5-slide .innovation-grid > div:nth-child(2) .innovation-ring{animation-delay:0.35s,1.15s;}
+.slide.active.module5-slide .innovation-grid > div:nth-child(3) .innovation-ring{animation-delay:0.5s,1.3s;}
+
+@keyframes strategyPulse{
+0%{filter:brightness(1);}
+50%{filter:brightness(1.15);}
+100%{filter:brightness(1);}
+}
+
+@keyframes ringIn{
+from{opacity:0;transform:scale(0.9);}
+to{opacity:1;transform:scale(1);}
+}
+
+@keyframes ringFloat{
+0%{transform:translateY(0);}
+50%{transform:translateY(-4px);}
+100%{transform:translateY(0);}
+}
+
+/* Conclusion visuals */
+.conclusion-list{
+list-style:none;
+padding-left:0;
+margin:0;
+display:grid;
+gap:10px;
+}
+
+.conclusion-list li{
+display:flex;
+align-items:flex-start;
+gap:10px;
+padding:10px 12px;
+border-radius:12px;
+background:linear-gradient(145deg,#f8fbff,#edf4ff);
+border:1px solid #d9e8ff;
+opacity:0;
+transform:translateY(10px);
+}
+
+.conclusion-icon{
+width:28px;
+height:28px;
+line-height:28px;
+border-radius:50%;
+text-align:center;
+background:linear-gradient(135deg,#0284c7,#2563eb);
+color:#fff;
+font-size:13px;
+flex-shrink:0;
+box-shadow:0 6px 14px rgba(37,99,235,0.28);
+}
+
+.slide.active .conclusion-list li{
+animation:conclusionItemIn 0.45s ease forwards;
+}
+
+.slide.active .conclusion-list li:nth-child(1){animation-delay:0.2s;}
+.slide.active .conclusion-list li:nth-child(2){animation-delay:0.5s;}
+.slide.active .conclusion-list li:nth-child(3){animation-delay:0.8s;}
+.slide.active .conclusion-list li:nth-child(4){animation-delay:1.1s;}
+.slide.active .conclusion-list li:nth-child(5){animation-delay:1.4s;}
+
+@keyframes conclusionItemIn{
+from{opacity:0;transform:translateY(10px);}
+to{opacity:1;transform:translateY(0);}
 }
 </style>
 </head>
 
 <body>
+<img src="logo.png" class="logo">
 
-<img src="springboard-logo.png.png" class="logo">
 
 <!-- FIRST SLIDE -->
-<section class="slide gradient" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
+<section class="slide gradient active first-slide">
 
-<h1 style="font-size:44px;font-weight:700;margin-bottom:15px;">
-Food Brands Understanding Customer Trends
+<h1 style="font-size:38px;font-weight:700;">
+Food Trends Understanding Customer Prefrences in FB
 </h1>
 
-<p style="max-width:750px;font-size:16px;line-height:1.6;opacity:0.95;margin-bottom:35px;">
+<p style="font-size:16px;line-height:1.6;opacity:0.95;">
 Integrating structured survey data and unstructured customer feedback into Power BI dashboards 
 to generate actionable insights using sentiment analysis and behavioral clustering.
 </p>
 
-<h2 style="font-size:24px;margin-bottom:20px;font-weight:600;">
+<h2 style="font-size:24px;font-weight:600;">
 Dashboard Modules
 </h2>
 
-<div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:20px;max-width:900px;">
+<div class="module-grid">
 
-<div class="module-card" style="">
+<div class="module-card">
 <i class="fa-solid fa-database" style="font-size:22px;color:#1e3c72;margin-bottom:8px;"></i>
 <h3>Data Collection</h3>
-<p style="font-size:13px;">Unified structured &amp; unstructured model</p>
+<p style="font-size:13px;">Unified structured & unstructured model</p>
 </div>
 
-<div class="module-card" style="">
+<div class="module-card">
 <i class="fa-solid fa-brain" style="font-size:22px;color:#1e3c72;margin-bottom:8px;"></i>
 <h3>Sentiment Analysis</h3>
 <p style="font-size:13px;">NLP based feedback classification</p>
 </div>
 
-<div class="module-card" style="">
+<div class="module-card">
 <i class="fa-solid fa-chart-line" style="font-size:22px;color:#1e3c72;margin-bottom:8px;"></i>
 <h3>Product Insights</h3>
-<p style="font-size:13px;">Rating &amp; feature analysis</p>
+<p style="font-size:13px;">Rating & feature analysis</p>
 </div>
 
-<div class="module-card" style="">
+<div class="module-card">
 <i class="fa-solid fa-user-group" style="font-size:22px;color:#1e3c72;margin-bottom:8px;"></i>
 <h3>Customer Segmentation</h3>
 <p style="font-size:13px;">Behavioral clustering</p>
 </div>
 
-<div class="module-card" style="">
+<div class="module-card">
 <i class="fa-solid fa-lightbulb" style="font-size:22px;color:#1e3c72;margin-bottom:8px;"></i>
 <h3>Strategy and Innovation</h3>
-<p style="font-size:13px;">Trend &amp; growth insights</p>
+<p style="font-size:13px;">Trend & growth insights</p>
 </div>
 
-<div class="module-card" style="">
+<div class="module-card">
 <i class="fa-solid fa-flag-checkered" style="font-size:22px;color:#1e3c72;margin-bottom:8px;"></i>
 <h3>Conclusion</h3>
 <p style="font-size:13px;">Data-driven strategic decision making</p>
@@ -333,17 +1150,18 @@ Dashboard Modules
 
 </div>
 
-<div class="slide-number">11 / 11</div>
+<div class="slide-number"></div>
 </section>
 
 <!-- TEAM (FIXED 16:9 SAFE VERSION) -->
-<section class="slide light" style="
+<section class="slide light"
+style="
 display:flex;
 flex-direction:column;
-justify-content:center;
+justify-content:flex-start;
 align-items:center;
 overflow:hidden;
-padding:60px 100px;
+padding:35px 100px 1.5cm 100px;
 ">
 
 <h1 style="margin-bottom:20px;color:#ffffff;">
@@ -352,7 +1170,12 @@ padding:60px 100px;
 
 <!-- TEAM LEADER -->
 <div style="margin-bottom:25px;">
-<div class="team-card" style="width: 260px; border: 2px solid rgb(0, 114, 255); padding: 18px;">
+<div class="team-card"
+style="
+width:280px;
+border:2px solid #0072ff;
+padding:20px;
+">
 
 <i class="fa-solid fa-crown" style="font-size:26px;color:#f4b400;margin-bottom:8px;"></i>
 <h3 style="margin:4px 0;">Rekha Shri Giduthuri</h3>
@@ -360,7 +1183,7 @@ padding:60px 100px;
 Team Leader
 </p>
 <p style="font-size:12px;color:#555;margin:0;">
-Strategy • Coordination • Final Review
+Strategy - Coordination - Final Review
 </p>
 
 </div>
@@ -369,57 +1192,59 @@ Strategy • Coordination • Final Review
 <!-- OTHER MEMBERS -->
 <div style="
 display:grid;
-grid-template-columns:repeat(3, 200px);
-gap:18px;
+grid-template-columns:repeat(3,minmax(0,1fr));
+column-gap:16px;
+row-gap:16px;
 justify-content:center;
+width:min(100%,760px);
 ">
 
 
 
-<div class="team-card" style="padding: 15px;">
+<div class="team-card" style="padding:20px 22px;width:100%;box-sizing:border-box;">
 <i class="fa-solid fa-brain"></i>
-<h3 style="font-size:15px;">Naitik Kanojiya</h3>
-<p style="font-size:12px;">Sentiment Analysis</p>
+<h3 style="font-size:16px;">Naitik Kanojiya</h3>
+<p style="font-size:13px;">Sentiment Analysis</p>
 </div>
 
-<div class="team-card" style="padding: 15px;">
+<div class="team-card" style="padding:20px 22px;width:100%;box-sizing:border-box;">
 <i class="fa-solid fa-chart-line"></i>
-<h3 style="font-size:15px;">Naresh Kumar</h3>
-<p style="font-size:12px;">Product Insights</p>
+<h3 style="font-size:16px;">Naresh Kumar</h3>
+<p style="font-size:13px;">Product Insights</p>
 </div>
 
-<div class="team-card" style="padding: 15px;">
+<div class="team-card" style="padding:20px 22px;width:100%;box-sizing:border-box;">
 <i class="fa-solid fa-user-group"></i>
-<h3 style="font-size:15px;">Rohit Ranjan</h3>
-<p style="font-size:12px;">Customer Segmentation</p>
+<h3 style="font-size:16px;">Rohit Ranjan</h3>
+<p style="font-size:13px;">Customer Segmentation</p>
 </div>
 
-<div class="team-card" style="padding: 15px;">
+<div class="team-card" style="padding:20px 22px;width:100%;box-sizing:border-box;">
 <i class="fa-solid fa-lightbulb"></i>
-<h3 style="font-size:15px;">Nithya Thevath</h3>
-<p style="font-size:12px;">Strategy And Innovation</p>
+<h3 style="font-size:16px;">Nithya Thevath</h3>
+<p style="font-size:13px;">Strategy And Innovation</p>
 </div>
-<div class="team-card" style="padding: 15px;"><i class="fa-solid fa-chart-pie"></i>
+<div class="team-card" style="padding:20px 22px;width:100%;box-sizing:border-box;"><i class="fa-solid fa-chart-pie"></i>
 
-<h3 style="font-size:15px;">Nasina Ashrita</h3>
-<p style="font-size:12px;">Presentation</p>
+<h3 style="font-size:16px;">Nasina Asritha</h3>
+<p style="font-size:13px;">Presentation</p>
 </div>
 
-<div class="team-card" style="padding: 15px;">
+<div class="team-card" style="padding:20px 22px;width:100%;box-sizing:border-box;">
 <i class="fa-solid fa-database"></i>
-<h3 style="font-size:15px;">Gummalla Nagalakshmi</h3>
-<p style="font-size:12px;">Data Collection</p>
+<h3 style="font-size:16px;">Gummalla Nagalakshmi</h3>
+<p style="font-size:13px;">Data Collection</p>
 </div>
 
 </div>
 
 
-<div class="slide-number">11 / 11</div>
+<div class="slide-number"></div>
 
 </section>
 
 
-<!-- DATA SLIDE 01 – UPDATED -->
+<!-- DATA SLIDE 01 - UPDATED -->
 <section class="slide light">
 
 <h1 style="color:#fcfeff;">
@@ -429,22 +1254,22 @@ justify-content:center;
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:25px;margin-top:20px;">
 
 <!-- Structured -->
-<div class="card" style="padding: 25px;">
+<div class="card" style="padding:25px;">
 <h2 style="font-weight:700;margin-bottom:10px;color:#0077b6;">
 <i class="fa-solid fa-table"></i> Structured Data
 </h2>
 
 <ul style="line-height:1.6;font-size:14px;">
-<li><i class="fa-solid fa-user"></i> <b>Customer Demographics</b> – Age, Gender, Region</li>
+<li><i class="fa-solid fa-user"></i> <b>Customer Demographics</b> - Age, Gender, Region</li>
 <li><i class="fa-solid fa-cart-shopping"></i> <b>Product Purchased</b></li>
-<li><i class="fa-solid fa-star"></i> <b>Ratings &amp; Satisfaction</b></li>
+<li><i class="fa-solid fa-star"></i> <b>Ratings & Satisfaction</b></li>
 <li><i class="fa-solid fa-repeat"></i> <b>Purchase Frequency</b></li>
 <li><i class="fa-solid fa-calendar"></i> <b>Date Tracking</b></li>
 </ul>
 </div>
 
 <!-- Unstructured -->
-<div class="card" style="padding: 25px;">
+<div class="card" style="padding:25px;">
 <h2 style="font-weight:700;margin-bottom:10px;color:#0077b6;">
 <i class="fa-solid fa-comments"></i> Unstructured Data
 </h2>
@@ -453,41 +1278,41 @@ justify-content:center;
 <li><i class="fa-brands fa-facebook"></i> <b>Social Media Comments</b></li>
 <li><i class="fa-solid fa-mobile-screen"></i> <b>App Reviews</b></li>
 <li><i class="fa-solid fa-pen"></i> <b>Open Text Feedback</b></li>
-<li><i class="fa-solid fa-face-smile"></i> <b>Emoji &amp; Keyword Patterns</b></li>
+<li><i class="fa-solid fa-face-smile"></i> <b>Emoji & Keyword Patterns</b></li>
 </ul>
 </div>
 
 </div>
 
-<div class="card" style="margin-top: 20px; padding: 25px;">
+<div class="card" style="margin-top:20px;padding:25px;">
 <h2 style="font-weight:700;margin-bottom:10px;color:#0077b6;">
-<i class="fa-solid fa-link"></i> Data Integration &amp; Cleaning
+<i class="fa-solid fa-link"></i> Data Integration & Cleaning
 </h2>
 
 <ul style="line-height:1.6;font-size:14px;">
-<li><i class="fa-solid fa-broom"></i> <b>Cleaning &amp; Deduplication</b></li>
+<li><i class="fa-solid fa-broom"></i> <b>Cleaning & Deduplication</b></li>
 <li><i class="fa-solid fa-diagram-project"></i> <b>Unified CustomerID Mapping</b></li>
 <li><i class="fa-solid fa-database"></i> <b>Centralized Power BI Model</b></li>
 </ul>
 </div>
 
 
-<div class="slide-number">11 / 11</div>
+<div class="slide-number"></div>
 
 </section>
 
 
 
-<!-- DATA SLIDE 02 – UPDATED -->
+<!-- DATA SLIDE 02 - UPDATED -->
 <section class="slide light">
 
 <h1 style="color:#fbfeff;">
-<i class="fa-solid fa-sitemap"></i> Data Model &amp; Analytical Architecture
+<i class="fa-solid fa-sitemap"></i> Data Model & Analytical Architecture
 </h1>
 
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:25px;margin-top:20px;">
 
-<div class="card" style="padding: 25px;">
+<div class="card" style="padding:25px;">
 <h2 style="font-weight:700;margin-bottom:10px;color:#0077b6;">
 <i class="fa-solid fa-layer-group"></i> Core Tables
 </h2>
@@ -500,14 +1325,14 @@ justify-content:center;
 </ul>
 </div>
 
-<div class="card" style="padding: 25px;">
+<div class="card" style="padding:25px;">
 <h2 style="font-weight:700;margin-bottom:10px;color:#0077b6;">
 <i class="fa-solid fa-calculator"></i> Key Calculated Metrics
 </h2>
 
 <ul style="line-height:1.6;font-size:14px;">
 <li><i class="fa-solid fa-star-half-stroke"></i> <b>Average Rating</b></li>
-<li><i class="fa-solid fa-indian-rupee-sign"></i> <b>Revenue &amp; Spend</b></li>
+<li><i class="fa-solid fa-indian-rupee-sign"></i> <b>Revenue & Spend</b></li>
 <li><i class="fa-solid fa-chart-line"></i> <b>Sentiment Score</b></li>
 <li><i class="fa-solid fa-user-group"></i> <b>Persona Classification</b></li>
 </ul>
@@ -515,7 +1340,7 @@ justify-content:center;
 
 </div>
 
-<div class="card" style="margin-top: 20px; padding: 25px;">
+<div class="card" style="margin-top:20px;padding:25px;">
 <h2 style="font-weight:700;margin-bottom:10px;color:#0077b6;">
 <i class="fa-solid fa-diagram-project"></i> Analytical Framework
 </h2>
@@ -529,7 +1354,7 @@ justify-content:center;
 </div>
 
 
-<div class="slide-number">11 / 11</div>
+<div class="slide-number"></div>
 
 </section>
 
@@ -574,6 +1399,10 @@ Data Cleaning
 <i class="fa-solid fa-gears"></i>
 Feature Engineering
 </div>
+<div class="timeline-step">
+<i class="fa-solid fa-brain"></i>
+Sentiment Analysis
+</div>
 
 <div class="flow-arrow">
 <i class="fa-solid fa-arrow-right"></i>
@@ -590,17 +1419,14 @@ Product Analysis
 
 <div class="timeline-step">
 <i class="fa-solid fa-user-group"></i>
-Segmentation
+Customer Segmentation
 </div>
 
 <div class="flow-arrow">
 <i class="fa-solid fa-arrow-right"></i>
 </div>
 
-<div class="timeline-step">
-<i class="fa-solid fa-brain"></i>
-Sentiment Analysis
-</div>
+
 
 <div class="flow-arrow">
 <i class="fa-solid fa-arrow-right"></i>
@@ -608,7 +1434,7 @@ Sentiment Analysis
 
 <div class="timeline-step">
 <i class="fa-solid fa-desktop"></i>
-Dashboard
+Dashboard 
 </div>
 
 <div class="flow-arrow">
@@ -630,11 +1456,12 @@ Insight Generation
 <section class="slide light">
 <h1 style="color:#ffffff; font-size:38px; font-weight:700;">
 <i class="fa-solid fa-database"></i> 
-Module 01 – Data Modeling &amp; Preparation
+Module 01 - Data Modeling & Preparation
 </h1>
 
-<div class="card" style="">
-
+<div class="card">
+<div class="milestone-grid">
+<div>
 <div class="section-title"><i class="fa-solid fa-circle-info"></i> Overview</div>
 <ul>
 <li>Integrated structured and unstructured data sources.</li>
@@ -648,27 +1475,38 @@ Module 01 – Data Modeling &amp; Preparation
 <li>Celebration dining generated highest average spend.</li>
 <li>High-rated cuisines maintained consistent loyalty.</li>
 </ul>
+</div>
 
+<div class="chart-card">
+<div class="chart-title">Satisfaction by Visit Frequency</div>
+<div class="metric-bars">
+<div class="metric-row"><div>Weekly</div><div class="metric-track"><div class="metric-fill" style="width:86%;"></div></div><div>86</div></div>
+<div class="metric-row"><div>Monthly</div><div class="metric-track"><div class="metric-fill" style="width:71%;"></div></div><div>71</div></div>
+<div class="metric-row"><div>Occasional</div><div class="metric-track"><div class="metric-fill" style="width:58%;"></div></div><div>58</div></div>
+</div>
+</div>
+</div>
 </div>
 
 
-<div class="slide-number">11 / 11</div>
+<div class="slide-number"></div>
 </section>
 
 <!-- MILESTONE 02 -->
 <section class="slide light">
 <h1 style="color:#ffffff; font-size:38px; font-weight:700;">
 <i class="fa-solid fa-brain"></i> 
-Module 02 – Sentiment Analysis
+Module 02 - Sentiment Analysis
 </h1>
 
-<div class="card" style="">
-
+<div class="card">
+<div class="milestone-grid">
+<div>
 <div class="section-title"><i class="fa-solid fa-robot"></i> Implementation</div>
 <ul>
 <li>Applied NLP sentiment scoring logic.</li>
-<li>Classified Positive, Neutral &amp; Negative feedback.</li>
-<li>Generated sentiment score scale (&gt;= 0.05 to &lt;=).</li>
+<li>Classified Positive, Neutral & Negative feedback.</li>
+<li>Generated sentiment score scale (>= 0.05 to <= -0.05).</li>
 </ul>
 
 <div class="section-title"><i class="fa-solid fa-chart-line"></i> Insights</div>
@@ -677,27 +1515,51 @@ Module 02 – Sentiment Analysis
 <li>Loyal customers express stronger positive sentiment.</li>
 <li>Specific product categories drive negative trends.</li>
 </ul>
+</div>
 
+<div class="chart-card">
+<div class="chart-title">Sentiment Split</div>
+<div class="donut-wrap">
+<div class="donut"></div>
+<div class="donut-label">55% Positive</div>
+</div>
+<div class="sentiment-legend">
+<div class="legend-item">
+<div class="legend-left"><span class="legend-dot" style="background:#16a34a;"></span>Positive</div>
+<div><b>55%</b></div>
+</div>
+<div class="legend-item">
+<div class="legend-left"><span class="legend-dot" style="background:#f59e0b;"></span>Neutral</div>
+<div><b>27%</b></div>
+</div>
+<div class="legend-item">
+<div class="legend-left"><span class="legend-dot" style="background:#ef4444;"></span>Negative</div>
+<div><b>18%</b></div>
+</div>
+</div>
+</div>
+</div>
 </div>
 
 
-<div class="slide-number">11 / 11</div>
+<div class="slide-number"></div>
 </section>
 
 <!-- MILESTONE 03 -->
 <section class="slide light">
 <h1 style="color:#ffffff; font-size:38px; font-weight:700;">
 <i class="fa-solid fa-chart-pie" style="color:#ffffff;"></i> 
-Module 03 – Product Insights
+Module 03 - Product Insights
 </h1>
 
-<div class="card" style="">
-
+<div class="card">
+<div class="milestone-grid">
+<div>
 <div class="section-title"><i class="fa-solid fa-calculator"></i> Measures Developed</div>
 <ul>
-<li>Total Revenue &amp; Spend Metrics.</li>
+<li>Total Revenue & Spend Metrics.</li>
 <li>Revenue Contribution Percentage.</li>
-<li>Ranking &amp; Correlation Analysis.</li>
+<li>Ranking & Correlation Analysis.</li>
 </ul>
 
 <div class="section-title"><i class="fa-solid fa-arrow-trend-up"></i> Product Insights</div>
@@ -706,25 +1568,43 @@ Module 03 – Product Insights
 <li>Premium products yield higher average spend.</li>
 <li>Top-performing categories contribute majority revenue share.</li>
 </ul>
+</div>
 
+<div class="chart-card">
+<div class="chart-title">Revenue Trend vs Sentiment</div>
+<svg class="trend-svg" viewBox="0 0 240 130" aria-label="Trend chart">
+<line x1="8" y1="110" x2="232" y2="110" class="trend-grid"></line>
+<line x1="8" y1="82" x2="232" y2="82" class="trend-grid"></line>
+<line x1="8" y1="54" x2="232" y2="54" class="trend-grid"></line>
+<polyline class="trend-line-main" points="8,110 58,92 108,86 158,64 230,45"></polyline>
+<polyline class="trend-line-sub" points="8,118 58,108 108,96 158,80 230,70"></polyline>
+<circle class="trend-end" cx="230" cy="45" r="4" fill="#1d4ed8"></circle>
+<circle class="trend-end" cx="230" cy="70" r="4" fill="#22c55e"></circle>
+<text x="10" y="18" font-size="11" fill="#0f172a">Blue: Revenue</text>
+<text x="10" y="33" font-size="11" fill="#0f172a">Green: Sentiment score</text>
+</svg>
+</div>
+</div>
+</div>
 </div>
 
 
-<div class="slide-number">11 / 11</div>
+<div class="slide-number"></div>
 </section>
 
 <!-- MILESTONE 04 -->
 <section class="slide light">
 <h1 style="color:#ffffff; font-size:38px; font-weight:700;">
 <i class="fa-solid fa-user-group" style="color:#ffffff;"></i> 
-Module 04 – Customer Segmentation
+Module 04 - Customer Segmentation
 </h1>
-<div class="card" style="">
-
+<div class="card">
+<div class="milestone-grid">
+<div>
 <div class="section-title"><i class="fa-solid fa-layer-group"></i> Segmentation Logic</div>
 <ul>
 <li>Created Age Group classification.</li>
-<li>Identified Loyal, Neutral &amp; At-Risk personas.</li>
+<li>Identified Loyal, Neutral & At-Risk personas.</li>
 <li>Mapped behavior across purchase channels.</li>
 </ul>
 
@@ -734,24 +1614,39 @@ Module 04 – Customer Segmentation
 <li>At-Risk customers require retention campaigns.</li>
 <li>Under-25 demographic shows highest engagement.</li>
 </ul>
+</div>
 
+<div class="chart-card">
+<div class="chart-title">Revenue Share by Persona</div>
+<div class="seg-chart">
+<div class="seg-bar" style="height:100%;"><span>62%</span></div>
+<div class="seg-bar" style="height:61%;background:linear-gradient(180deg,#7dd3fc,#0ea5e9);"><span>38%</span></div>
+<div class="seg-bar" style="height:34%;background:linear-gradient(180deg,#fca5a5,#ef4444);"><span>21%</span></div>
+</div>
+<div class="seg-labels">
+<div>Loyal</div>
+<div>Neutral</div>
+<div>At-Risk</div>
+</div>
+</div>
+</div>
 </div>
 
 
-<div class="slide-number">11 / 11</div>
+<div class="slide-number"></div>
 </section>
 
-<!-- MODULE 05 – BLUE ACCENT -->
-<section class="slide light">
+<!-- MODULE 05 - BLUE ACCENT -->
+<section class="slide light module5-slide">
 
 <h1 style="color:#ffffff;">
-<i class="fa-solid fa-lightbulb"></i> Module 05 – Strategy &amp; Innovation
+<i class="fa-solid fa-lightbulb"></i> Module 05 - Strategy & Innovation
 </h1>
 
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:25px;margin-top:25px;">
+<div class="module5-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:25px;margin-top:25px;">
 
 <!-- SECTION 1 -->
-<div class="card" style="padding: 25px; border: 2px solid rgb(19, 174, 241);">
+<div class="card" style="padding:25px;border:2px solid #13aef1;">
 <h2 style="font-weight:700;margin-bottom:10px;color:#13aef1;">
 <i class="fa-solid fa-bullseye"></i> Strategic Focus
 </h2>
@@ -761,10 +1656,16 @@ Module 04 – Customer Segmentation
 <li><i class="fa-solid fa-chart-line"></i> <b>Revenue Optimization</b> from high-performing segments.</li>
 <li><i class="fa-solid fa-user-check"></i> <b>Retention Planning</b> for At-Risk customers.</li>
 </ul>
+
+<div class="strategy-bars">
+<div class="strategy-bar"><div>Marketing Fit</div><div class="strategy-track"><div class="strategy-fill" style="width:86%;"></div></div><div>86</div></div>
+<div class="strategy-bar"><div>Retention</div><div class="strategy-track"><div class="strategy-fill" style="width:74%;"></div></div><div>74</div></div>
+<div class="strategy-bar"><div>ROI Focus</div><div class="strategy-track"><div class="strategy-fill" style="width:81%;"></div></div><div>81</div></div>
+</div>
 </div>
 
 <!-- SECTION 2 -->
-<div class="card" style="padding: 25px; border: 2px solid rgb(19, 174, 241);">
+<div class="card" style="padding:25px;border:2px solid #13aef1;">
 <h2 style="font-weight:700;margin-bottom:10px;color:#13aef1;">
 <i class="fa-solid fa-gears"></i> Innovation Drivers
 </h2>
@@ -774,14 +1675,29 @@ Module 04 – Customer Segmentation
 <li><i class="fa-solid fa-star"></i> <b>Quality Improvements</b> from negative feedback analysis.</li>
 <li><i class="fa-solid fa-chart-pie"></i> <b>Feature Score Optimization</b>.</li>
 </ul>
+
+<div class="innovation-grid">
+<div>
+<div class="innovation-ring" style="--pct:72%;"><span>72%</span></div>
+<div class="innovation-label">Feature Lift</div>
+</div>
+<div>
+<div class="innovation-ring" style="--pct:64%;"><span>64%</span></div>
+<div class="innovation-label">Quality Gain</div>
+</div>
+<div>
+<div class="innovation-ring" style="--pct:79%;"><span>79%</span></div>
+<div class="innovation-label">Adoption</div>
+</div>
+</div>
 </div>
 
 </div>
 
 <!-- FULL WIDTH SECTION -->
-<div class="card" style="margin-top: 25px; padding: 25px; border: 2px solid rgb(19, 174, 241);">
+<div class="card" style="margin-top:25px;padding:25px;border:2px solid #13aef1;">
 <h2 style="font-weight:700;margin-bottom:10px;color:#13aef1;">
-<i class="fa-solid fa-rocket"></i> Growth &amp; Expansion Roadmap
+<i class="fa-solid fa-rocket"></i> Growth & Expansion Roadmap
 </h2>
 
 <ul style="line-height:1.6;font-size:14px;">
@@ -793,46 +1709,55 @@ Module 04 – Customer Segmentation
 </div>
 
 
-<div class="slide-number">11 / 11</div>
+<div class="slide-number"></div>
 
 </section>
 
 <!-- CONCLUSION -->
-<section class="slide gradient active">
+<section class="slide gradient">
 
 <h1 style="color:white;">
 <i class="fa-solid fa-flag-checkered"></i> Conclusion
 </h1>
 
-<div class="card" style="max-width: 900px; margin: auto; padding: 30px; color: rgb(31, 41, 55);">
+<div class="card" style="
+max-width:900px;
+margin:auto;
+padding:30px;
+color:#1f2937;
+">
 
 <h2 style="font-weight:700;margin-bottom:15px;color:#1e3c72;">
 <i class="fa-solid fa-clipboard-check"></i> Overall Findings
 </h2>
 
-<ul style="line-height:1.8;font-size:15px;">
-<li>Overall sentiment remains positive (55%), with an average score of 0.33, indicating stable brand perception.</li>
-<li>Loyal customers represent the largest segment and contribute significantly higher ratings, reinforcing strong customer retention.</li>
-<li>A small but important segment of at-risk customers requires targeted engagement strategies.</li>
-<li>Product-level sentiment differences highlight clear opportunities for quality and experience improvement.</li>
-<li>Online channels and younger demographics drive higher engagement, suggesting strong digital growth potential.</li>
-<li>Higher satisfaction levels are directly associated with increased repeat purchase behavior.</li>
-<li>Consistently high-rated products show stronger long-term customer loyalty.</li>
-<li>Negative feedback is concentrated around specific service and product factors, allowing focused corrective action.</li>
-<li>Customer segmentation improves clarity in identifying revenue-driving groups.</li>
-<li>Data-driven insights support more structured planning and operational improvements.</li>
+<ul class="conclusion-list">
+<li><span class="conclusion-icon"><i class="fa-solid fa-face-smile"></i></span><span>Brand perception is stable, with 55% positive sentiment and a healthy overall score profile.</span></li>
+<li><span class="conclusion-icon"><i class="fa-solid fa-users"></i></span><span>Loyal customer segments remain the strongest revenue contributors and maintain better ratings.</span></li>
+<li><span class="conclusion-icon"><i class="fa-solid fa-user-clock"></i></span><span>At-risk customers require focused retention plays to prevent future churn.</span></li>
+<li><span class="conclusion-icon"><i class="fa-solid fa-repeat"></i></span><span>Higher satisfaction is directly linked to repeat purchases and stronger long-term loyalty.</span></li>
+<li><span class="conclusion-icon"><i class="fa-solid fa-chart-column"></i></span><span>Power BI monitoring enables faster decisions and measurable strategic impact.</span></li>
 </ul>
 
 </div>
 
 </section>
+<button class="slide-nav-btn" id="prevBtn" type="button" aria-label="Previous slide">
+<i class="fa-solid fa-chevron-left"></i>
+</button>
+<button class="slide-nav-btn" id="nextBtn" type="button" aria-label="Next slide">
+<i class="fa-solid fa-chevron-right"></i>
+</button>
 <script>
 let currentSlide = 0;
 const slides = document.querySelectorAll(".slide");
 const slideNumbers = document.querySelectorAll(".slide-number");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+let flowTimers = [];
 
 function resetAnimations(slide){
-    const animatedElements = slide.querySelectorAll(".card, .module-card, .team-card");
+    const animatedElements = slide.querySelectorAll(".card, .module-card, .team-card, h1, h2, p, .section-title, .timeline-step, .flow-arrow, .metric-fill, .donut, .donut-label, .trend-line-main, .trend-line-sub, .trend-end, .seg-bar, .seg-bar span, .seg-labels div, .card ul li, .strategy-fill, .innovation-ring");
     animatedElements.forEach(el => {
         el.style.animation = "none";
         el.offsetHeight; // force reflow
@@ -840,13 +1765,62 @@ function resetAnimations(slide){
     });
 }
 
+function clearFlowSequence(){
+    flowTimers.forEach(t => clearTimeout(t));
+    flowTimers = [];
+    document.querySelectorAll(".timeline > *").forEach(el => {
+        el.classList.remove("is-current", "is-passed");
+    });
+}
+
+function runFlowSequence(slide){
+    const timeline = slide.querySelector(".timeline");
+    if(!timeline) return;
+    const items = Array.from(timeline.children);
+    if(!items.length) return;
+
+    clearFlowSequence();
+    const stepMs = 380;
+    items.forEach((el, idx) => {
+        const timer = setTimeout(() => {
+            if(idx > 0){
+                items[idx - 1].classList.remove("is-current");
+                items[idx - 1].classList.add("is-passed");
+            }
+            el.classList.add("is-current");
+            if(idx === items.length - 1){
+                const endTimer = setTimeout(() => {
+                    el.classList.remove("is-current");
+                    el.classList.add("is-passed");
+                }, stepMs);
+                flowTimers.push(endTimer);
+            }
+        }, idx * stepMs);
+        flowTimers.push(timer);
+    });
+}
+
+function applySequentialCardDelays(slide){
+    const seqCards = slide.querySelectorAll(".module-card, .team-card");
+    if(!seqCards.length) return;
+    seqCards.forEach((card, i) => {
+        const delay = (0.18 + (i * 0.45)).toFixed(2);
+        card.style.animation = `cardAppear 0.5s ease ${delay}s forwards`;
+    });
+}
+
 function showSlide(index){
+    clearFlowSequence();
     slides.forEach(s => s.classList.remove("active"));
     slides[index].classList.add("active");
 
-    resetAnimations(slides[index]);  // 🔥 important line
+    resetAnimations(slides[index]);  // - important line
+    applySequentialCardDelays(slides[index]);
+    runFlowSequence(slides[index]);
 
     slideNumbers.forEach(sn => sn.innerText = (index+1)+" / "+slides.length);
+    prevBtn.disabled = index === 0;
+    nextBtn.disabled = index === slides.length - 1;
 }
 
 function nextSlide(){
@@ -868,46 +1842,11 @@ document.addEventListener("keydown",function(e){
     if(e.key==="ArrowLeft") prevSlide();
 });
 
+prevBtn.addEventListener("click", prevSlide);
+nextBtn.addEventListener("click", nextSlide);
+
 showSlide(0);
 </script>
 
-<!-- Code injected by live-server -->
-<script>
-	// <![CDATA[  <-- For SVG support
-	if ('WebSocket' in window) {
-		(function () {
-			function refreshCSS() {
-				var sheets = [].slice.call(document.getElementsByTagName("link"));
-				var head = document.getElementsByTagName("head")[0];
-				for (var i = 0; i < sheets.length; ++i) {
-					var elem = sheets[i];
-					var parent = elem.parentElement || head;
-					parent.removeChild(elem);
-					var rel = elem.rel;
-					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-					}
-					parent.appendChild(elem);
-				}
-			}
-			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
-			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
-			};
-			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-				console.log('Live reload enabled.');
-				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-			}
-		})();
-	}
-	else {
-		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-	}
-	// ]]>
-</script>
-
-</body></html>
+</body>
+</html>
